@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.AsyncClasses.Async1;
 import com.example.myapplication.AsyncClasses.AsyncTaskCompleteListener;
 import com.example.myapplication.AsyncClasses.BackgroundTask;
 import com.example.myapplication.R;
 
-public class MainActivity2 extends AppCompatActivity implements AsyncTaskCompleteListener<Integer> {
+public class MainActivity2 extends AppCompatActivity implements AsyncTaskCompleteListener<Object> {
 
     public TextView tv1;
     public Button button1;
@@ -23,18 +24,18 @@ public class MainActivity2 extends AppCompatActivity implements AsyncTaskComplet
 
         button1 = findViewById(R.id.button1);
         tv1 = findViewById(R.id.textView1);
-        final BackgroundTask<Integer> backgroundTask = new BackgroundTask<>(this);
+        final Async1 async1 = new Async1(this);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backgroundTask.execute(1010);
+                async1.execute(1212);
                 button1.setText("Running Asynctask");
             }
         });
     }
 
     @Override
-    public void onTaskComplete(Integer result) {
+    public void onTaskComplete(Object result) {
         tv1.setText(result.toString());
         button1.setText("Asynctask Completed");
         button1.setClickable(false);

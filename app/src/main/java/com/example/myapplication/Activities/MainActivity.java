@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.AsyncClasses.Async0;
 import com.example.myapplication.AsyncClasses.AsyncTaskCompleteListener;
 import com.example.myapplication.AsyncClasses.BackgroundTask;
+import com.example.myapplication.AsyncClasses.BaseClass;
 import com.example.myapplication.R;
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String> {
+public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<Object> {
 
     public TextView tv0;
     public Button button0,gotobutton0;
@@ -26,11 +28,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         button0 = findViewById(R.id.button0);
         gotobutton0 = findViewById(R.id.gotobutton0);
         tv0 = findViewById(R.id.textView0);
-        final BackgroundTask<String> backgroundTask = new BackgroundTask<>(this);
+        final Async0 async0 = new Async0(this);
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backgroundTask.execute("Task Completed");
+                async0.execute("Task Completed");
                 button0.setText("Running Asynctask");
             }
         });
@@ -43,9 +45,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         });
     }
 
+
     @Override
-    public void onTaskComplete(String result) {
-        tv0.setText(result);
+    public void onTaskComplete(Object result) {
+        tv0.setText(result.toString());
         button0.setText("Asynctask Completed");
         button0.setClickable(false);
     }
